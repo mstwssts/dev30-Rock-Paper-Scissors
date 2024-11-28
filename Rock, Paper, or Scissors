@@ -1,0 +1,68 @@
+const getUserChoice = (userInput) => {
+    userInput = userInput.toLowerCase();
+    if (userInput === 'rock') {
+      return 'rock';
+    } else if (userInput === 'paper') {
+      return 'paper';
+    } else if (userInput === 'scissors') {
+      return 'scissors';
+    } else if (userInput === 'bomb') {
+      return 'bomb';
+    } else {
+      return 'Invalid input';
+    }
+  };
+  
+  const getComputerChoice = () => {
+    const randomNumber = Math.floor(Math.random() * 3);
+    if (randomNumber === 0) {
+      return 'rock';
+    } else if (randomNumber === 1) {
+      return 'paper';
+    } else {
+      return 'scissors';
+    }
+  };
+  
+  const determineWinner = (userChoice, computerChoice) => {
+    if (userChoice === computerChoice) {
+      return "It's a tie!";
+    }
+  
+    switch (userChoice) {
+      case 'rock':
+        if (computerChoice === 'paper') {
+          return 'The computer won! Paper covers rock.';
+        } else {
+          return 'You won! Rock smashes scissors.';
+        }
+      case 'paper':
+        if (computerChoice === 'scissors') {
+          return 'The computer won! Scissors cut paper.';
+        } else {
+          return 'You won! Paper covers rock.';
+        }
+      case 'scissors':
+        if (computerChoice === 'rock') {
+          return 'The computer won! Rock smashes scissors.';
+        } else {
+          return 'You won! Scissors cut paper.';
+        }
+      case 'bomb':
+        return 'You won! Computer blew up!';
+      default:
+        return 'Invalid choice. Please select rock, paper, or scissors.';
+    }
+  };
+  
+  const playGame = () => {
+    const userChoice = getUserChoice('rock');
+    console.log(userChoice);
+  
+    const computerChoice = getComputerChoice();
+    console.log(computerChoice);
+  
+    console.log(determineWinner(userChoice, computerChoice));
+  };
+  
+  playGame();
